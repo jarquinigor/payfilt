@@ -1,7 +1,7 @@
-from database.DOPayfilt import DOPayfilt
-from models.TipoAccion import TipoAccion
-from models.Empresa import Empresa
-from models.Dataset import Dataset
+from src.database.DOPayfilt import DOPayfilt
+from src.models.TipoAccion import TipoAccion
+from src.models.Empresa import Empresa
+from src.models.Dataset import Dataset
 
 
 class BOPayfilt:
