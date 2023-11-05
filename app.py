@@ -51,6 +51,7 @@ login_manager_app = LoginManager(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = config('SQLALCHEMY_DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+app.config['SECRET_KEY'] = 'payfiltapp12345'
 
 db = SQLAlchemy(app)
 
