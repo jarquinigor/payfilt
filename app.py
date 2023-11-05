@@ -17,11 +17,11 @@ import pickle
 
 from config import configuration
 
-from src.services.BOPayfilt import BOPayfilt
-from src.models.Empresa import Empresa
-from src.utils.RecursoPayfilt import RecursoPayfilt
-from src.utils.Security import Security
-from src.utils.errors.CustomException import CustomException
+from services.BOPayfilt import BOPayfilt
+from models.Empresa import Empresa
+from utils.RecursoPayfilt import RecursoPayfilt
+from utils.Security import Security
+from utils.errors.CustomException import CustomException
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
