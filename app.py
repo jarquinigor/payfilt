@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask_mail import Mail, Message
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user, UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import aliased
@@ -53,6 +54,17 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 app.config['SECRET_KEY'] = 'payfiltapp12345'
 
+
+# EMAIL CONFIG
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USERNAME'] = config('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = config('MAIL_PASSWORD')
+mail = Mail(app)
+
+# SQLAlchemy
 db = SQLAlchemy(app)
 
 
@@ -738,6 +750,24 @@ def upload_file():
 def after_request(response):
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     return response
+
+
+def EnviarCorreo(_email, msg_title, msg_body):
+    msg_title = msg_title
+    sender = "noreply@payfiltapp.com"
+    msg = Message(msg_title, sender=sender, recipients=[_email])
+    data = {
+        'app_name': "PayFilt",
+        'title': msg_title,
+        'body': msg_body,
+    }
+    msg.html = render_template("email.html", data=data)
+    try:
+        mail.send(msg)
+        return redirect(url_for('login'))
+    except Exception as e:
+        print(e)
+        return redirect(url_for('signup'))
 
 
 if __name__ == '__main__':
