@@ -296,7 +296,7 @@ def get_languages():
                 u'prediction': data["prediction"],
             })
 
-            return jsonify({'message': "SUCCESS", 'success': True, 'prediction': data["prediction"]})
+            return jsonify({'message': "SUCCESS", 'success': True, 'prediction': op.prediction})
         except CustomException:
             return jsonify({'message': "ERROR", 'success': False})
     else:
