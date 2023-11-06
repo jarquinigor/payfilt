@@ -549,7 +549,7 @@ def onlineData():
     e = aliased(empresa)
 
     query = db.session.query(o).join(
-        e, o.id_empresa == e.id_empresa).filter(o.id_dataset == None)
+        e, o.id_empresa == e.id_empresa).filter(o.id_dataset == None, o.id_empresa == current_user.id)
 
     # search filter
     search = request.args.get('search[value]')
