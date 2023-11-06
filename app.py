@@ -296,12 +296,7 @@ def get_languages():
                 u'prediction': data["prediction"],
             })
 
-            tipoAcciones = BOPayfilt.ObtenerListadoTipoAccion()
-
-            if (len(tipoAcciones) > 0):
-                return jsonify({'languages': tipoAcciones, 'message': "SUCCESS", 'success': True})
-            else:
-                return jsonify({'message': "NOTFOUND", 'success': True})
+            return jsonify({'message': "SUCCESS", 'success': True, 'prediction': data["prediction"]})
         except CustomException:
             return jsonify({'message': "ERROR", 'success': False})
     else:
