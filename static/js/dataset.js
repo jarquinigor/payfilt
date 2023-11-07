@@ -145,7 +145,10 @@ function initializeTblDataset(idDataset) {
     },
     dom: "Bfrtip",
     buttons: [
-      "csv",
+      {
+        extend: "csv",
+        action: newexportaction,
+      },
       {
         extend: "excel",
         // exportOptions: {
@@ -157,6 +160,7 @@ function initializeTblDataset(idDataset) {
         extend: "pdfHtml5",
         orientation: "landscape",
         pageSize: "LEGAL",
+        action: newexportaction,
       },
       "print",
       {
